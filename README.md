@@ -1,4 +1,3 @@
-
 ![bandwidthd-chart](./images/bandwidthd-main.png)
 
 # bandwidthd for OpenWrt
@@ -7,21 +6,24 @@ I have been using OpenWrt for years.
 It’s on all my routers except the one that still has Gargoyle.
 I would like to switch it over to OpenWrt.
 
-But I need to be able to report daily, weekly and monthly Internet data usage.
+But I need the Gargoyle reports of daily, weekly and monthly Internet data usage.
 I also need to be able to report totals and for all or an IP subset like the smart TVs.
 Also, if usage is over a given quota, I want to restrict the bandwidth for all or just some devices.
 
-I have been searching for a while for something like this
-so I can migrate the final router from Gargoyle.
-I had not seen any posts here describing the package,
-soI made these notes and scripts during
-my Gargoyle migration. 
+I have been searching for a while for a replacement
+so I can migrate the final router to OpenWrt.
 
 I decided to use **bandwidthd-sqlite** to collect this data.
 The package seems to be well-supported in OpenWrt.
-The router can display reports in a web browser.
-It has built-in reports and graphs and I can easily pull the details I need from the SQLite database.
-I have created several scripts to do this at [https://github.com/RVgo4it/OpenWrt](https://github.com/RVgo4it/OpenWrt).  
+It has built-in reports and graphs in a web browser
+and I can easily pull the details I need
+from the SQLite database.
+
+I had not seen any posts here describing how to do it,
+so I made these notes and scripts during
+my Gargoyle migration. 
+You can see them at
+[https://github.com/RVgo4it/OpenWrt](https://github.com/RVgo4it/OpenWrt).  
 
 ## Installation and Configuration
 
@@ -50,9 +52,9 @@ uci commit bandwidthd
 
 In addition, **bandwidthd** must be configured
 to collect packets that pass _through_ the router,
-while ignoring traffic sent directly to or from it.
+while ignoring traffic sent directly _to or from_ it.
 To do this, use this command to get info
-from the network interface.  
+about the network interface.  
 
 ```
 ifconfig `uci get bandwidthd.@bandwidthd[0].dev`
@@ -216,4 +218,3 @@ For example, to shape the data usage for the smart TV to the defaults, forcing i
 These procedures and scripts have been tested on OpenWrt 21.02.3. They may work on older or future versions.
 
 I want to send a big thank you out to the OpenWrt team and supporters plus all the contributors on the forms for all their hard work on the awesome open source project called OpenWrt.
-
